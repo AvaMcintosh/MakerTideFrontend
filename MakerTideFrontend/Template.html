@@ -1,0 +1,30 @@
+<!-- index.shtml -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" href="/MakerTideFrontend/Header/header.css">
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main>
+    <!-- Your page content goes here -->
+</main>
+
+<footer>
+    <!-- Footer content -->
+</footer>
+
+
+<script>
+    fetch('/MakerTideFrontend/Header/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+        });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  background-color: #e3efef;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  height: 8vh;
+}
+.navbar a {
+  padding-left: 125px;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bolder;
+  color: #28afb0;
+}
+.big_container {
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  display: none;
+}
+.image1 {
+  display: none;
+}
+
+.form-container {
+  width: 350px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+.contents {
+  height: 350px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contents > * {
+  margin: 10px;
+}
+input[type="email"] {
+  width: 300px;
+  height: 30px;
+  outline: none;
+  padding-left: 11px;
+}
+input[type="password"] {
+  width: 300px;
+  height: 30px;
+  outline: none;
+  padding-left: 11px;
+}
+p.head {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: #28afb0;
+  letter-spacing: 5px;
+  font-weight: 600;
+  font-size: 18px;
+}
+input::placeholder {
+  color: #afafaf;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.password a {
+  text-decoration: none;
+  color: #28afb0;
+  margin-top: 3px;
+}
+.lgn_btn {
+  width: 300px;
+  background-color: #28afb0;
+  color: white;
+  border: none;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: small;
+  font-weight: 500;
+  border-radius: 20px;
+}
+a {
+  text-decoration: none;
+}
+.ggl {
+  width: 300px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.ggl p {
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+}
+.ggl_img {
+  height: 90%;
+  padding-right: 20px;
+}
+.login_redirect {
+  text-decoration: none;
+  font-weight: 500;
+}
+.login_redirect a {
+  color: #28afb0;
+}

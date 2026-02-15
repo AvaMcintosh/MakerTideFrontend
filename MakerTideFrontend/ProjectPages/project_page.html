@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="project_page.css" />
+		<title>Homepage</title>
+	</head>
+	<body>
+		<div class="main-nav">
+			<div class="navbar">
+				<a class="title" href="homepage.html">Maker Tide</a>
+				<div class="searchbar">
+					<img class="searchimg" src="images/search.png" />
+					<input
+						type="search"
+						name="search"
+						id="search"
+						placeholder="Search the website"
+					/>
+				</div>
+				<a class="post" href="postproject_afterlogin.html">Post a project</a>
+				<a class="shop" href="#">Shop</a>
+				<div class="icons">
+					<img class="messageimg" src="images/message.png" />
+					<img class="notificationimg" src="images/notification.png" />
+					<img class="cartimg" src="images/cart.png" />
+				</div>
+				<div class="userprofile">
+					<div class="profname">
+						<img class="userimg" src="images/user.png" />
+						<p>Username</p>
+						<img class="arrowimg" src="images/arrow.png" />
+					</div>
+					<div class="dropdown">
+						<a href="#">View profile</a>
+						<a href="#">My projects</a>
+						<a href="#">Support</a>
+						<a href="#">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="main-container">
+            <div class="userpost userpost1">
+                <div class="first">
+                    <img class="userprof" src="images/user.png">
+                    <div class="profilename">
+                        <a href="profile.html"><p class="user_name">Joshua Andrews</p></a>
+                        <div class="timeloc">
+                            <div class="time">
+                                <img class="clock" src="images/clock.png">
+                                <p class="post_time">3 mins ago</p>
+                            </div>
+                            <p class="location">Dayton|Ohio</p>
+                        </div> 
+                    </div>
+                </div>
+                <p class="proj_title">Project title</p>
+                <div class="details">
+                    <p>3D Print</p>
+                    <p>Metal</p>
+                    <p>$80</p>
+                </div>
+                <p class="proj_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <img class="image1" src="images/metal post 1.jpg">
+                        <img class="image2" src="images/metal post 2.jpg">
+                        <img class="image3" src="images/metal post 3.jpg">
+                    </div>
+                    <button class="carousel-arrow prev" onclick="prevSlide()">&#10094;</button>
+                    <button class="carousel-arrow next" onclick="nextSlide()">&#10095;</button>
+                </div>
+                <p class="bid_head">BID </p>
+                <div class="bid_details">
+                    <input type="text" name="bidrate" id="bidrate" placeholder="Enter your price">
+                    <select id="currency_dropdown" class="currency_dropdown" required>
+                        <option value="" selected disabled>Select</option>
+                        <option value="usd">USD</option>
+                    </select>
+                    <select id="project_dropdown" class="project_dropdown" required>
+                        <option value="" selected disabled>Select</option>
+                        <option value="per project">Per project</option>
+                        <option value="per hour">Per hour</option>
+                    </select>
+                    <button class="bidbtn">Place Bid</button>
+                </div>
+            </div>
+        </div>  -->
+
+		<div class="projects-body">
+			<div class="project-card" onclick="openModal()">
+				Project 1
+				<div class="project-content">
+					<h4>Project Title</h4>
+					<p>Short description...</p>
+				</div>
+
+				<button class="bid-button">Make Bid</button>
+			</div>
+			<div class="project-card">Project 2</div>
+			<div class="project-card">Project 3</div>
+			<div class="project-card">Project 4</div>
+			<div class="project-card">Project 5</div>
+			<div class="project-card">Project 6</div>
+		</div>
+
+		<div class="projects-search-box">
+			<h3>Filter Projects</h3>
+
+			<input
+				type="text"
+				placeholder="Search projects..."
+				class="search-input"
+			/>
+
+			<div class="category-filters">
+				<label> <input type="checkbox" /> 3D Printing </label>
+				<label> <input type="checkbox" /> Fabric / Embroidery </label>
+				<label> <input type="checkbox" /> Posters </label>
+			</div>
+		</div>
+
+		<!-- <div class="main-body">
+			<div class="prof">
+				<div class="profile_overview">
+					<img class="cover" src="images/cover.jpg" />
+					<div class="dp_position">
+						<img class="dp" src="images/josh_cover.jpg" />
+						<p class="username">Joshua Andrews</p>
+						<p class="job">3D Model Printer</p>
+						<p class="rating">4.2/5</p>
+						<div class="project_history">
+							<p class="history">Project History</p>
+							<div class="done">
+								<p>Projects done</p>
+								<p>23</p>
+							</div>
+							<div class="in_progress">
+								<p>Projects in progress</p>
+								<p>2</p>
+							</div>
+							<a class="viewbtn" href="profile.html">View Profile</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	</body>
+</html>
+
+<script>
+	function openModal() {
+		console.log("Project clicked");
+		document.getElementById("projectModal").style.display = "block";
+	}
+
+	document.addEventListener("click", function (event) {
+		var dropdown = document.querySelector(".dropdown");
+		var profname = document.querySelector(".profname");
+
+		if (!dropdown.contains(event.target) && !profname.contains(event.target)) {
+			dropdown.classList.remove("show");
+		}
+	});
+
+	document
+		.querySelector(".profname")
+		.addEventListener("click", function (event) {
+			var dropdown = document.querySelector(".dropdown");
+			dropdown.classList.toggle("show");
+			event.stopPropagation();
+		});
+
+	window.addEventListener("DOMContentLoaded", function () {
+		const firstImage = document.querySelector(".carousel img:first-child");
+		const carousel = document.querySelector(".carousel");
+		carousel.style.width = firstImage.clientWidth + "px";
+	});
+
+	document.querySelectorAll(".carousel").forEach(function (carousel) {
+		let slideIndex = 0;
+
+		function showSlides() {
+			const slides = carousel.querySelectorAll("img");
+			if (slideIndex >= slides.length) {
+				slideIndex = 0;
+			} else if (slideIndex < 0) {
+				slideIndex = slides.length - 1;
+			}
+			slides.forEach((slide, index) => {
+				if (index === slideIndex) {
+					slide.style.display = "block";
+				} else {
+					slide.style.display = "none";
+				}
+			});
+		}
+
+		function prevSlide() {
+			slideIndex--;
+			showSlides();
+		}
+
+		function nextSlide() {
+			slideIndex++;
+			showSlides();
+		}
+
+		showSlides();
+
+		carousel.parentElement
+			.querySelector(".prev")
+			.addEventListener("click", prevSlide);
+		carousel.parentElement
+			.querySelector(".next")
+			.addEventListener("click", nextSlide);
+	});
+</script>
+
+
