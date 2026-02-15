@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="string_injection_block.js"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="index.html">Maker Tide</a>
+    </div>
+    <div class="big_container">
+      <div class="container" id="container">
+        <div class="form-container login">
+          <form method="post">
+            <p class="head">LOGIN</p>
+            <div class="contents">
+              <input
+                type="email"
+                name="mail"
+                id="mail"
+                placeholder="Enter e-mail"
+                required
+              />
+              <div class="password">
+                <input
+                  type="password"
+                  name="pass"
+                  id="pass"
+                  placeholder="Enter Password"
+                  required
+                />
+                <a href="forgot_password.html">forgot password?</a>
+              </div>
+              <a href="homepage.html" class="lgn_btn">Login</a>
+              <a href="#">
+                <div class="ggl">
+                  <img class="ggl_img" src="images/ggl.png" />
+                  <p>Login with Google</p>
+                </div>
+              </a>
+
+              <div class="login_redirect">
+                <span>Don't have an account? </span>
+                <a href="signup.html">Signup</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
