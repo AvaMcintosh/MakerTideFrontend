@@ -17,3 +17,5 @@ TODO:
 - Projects Page needs bid button implementation
 
 - Add a check if the user doesn't exist when they post a project
+
+- Delete unused old code from past project
