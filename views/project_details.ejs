@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/project_details.css" />
+		<title>Homepage</title>
+	</head>
+
+	<% if (user !=null) { %>
+    	<%- include("partials/userheader") %>
+	<% } else { %>
+		<%- include("partials/header") %>
+	<% } %>
+
+	<body>
+		<h1 id="title"></h1>
+		<p id="description"></p>
+		<p id="budget"></p>
+
+		<script>
+			// Get project ID from the URL path, e.g. /projects/5
+			const pathParts = window.location.pathname.split("/");
+			const projectId = pathParts[pathParts.length - 1];
+			console.log("Project ID from URL:", projectId); // Should log 5
+
+			fetch(`/projectsData/${projectId}`)
+				.then((res) => res.json())
+				.then((project) => {
+					document.getElementById("title").textContent = project.title;
+					document.getElementById("description").textContent =
+						project.description;
+				})
+				.catch((err) => console.error("Error fetching project:", err));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homepage.css">
+    <script src="string_injection_block.js"> </script>
+    <script src="tilePopulate.js"> </script>
+
+    <title>Homepage</title>
+</head>
+
+<body>
+    <div class="main-nav">
+        <div class="navbar">
+            <a class="title" href="homepage.html">Print Mason</a>
+
+            <!-- Do Not change this-->
+            <form action="/api/SQL/Check" method="post">
+                <div class="searchbar">
+                    <img class="searchimg" src="images/search.png">
+                    <input type="search" name="search" id="search" placeholder="Search the website" autocomplete="off">
+                    <div class="error-bubble" id="errorBubble"></div> <!-- Error message bubble -->
+                </div>
+            </form>
+            <!-- Do Not change this-->
+
+            <a class="post" href="post_a_project.html">Post a project</a>
+
+            <a class="shop" href="#">Shop</a>
+
+            <div class="icons">
+                <img class="messageimg" src="images/message.png">
+                <img class="notificationimg" src="images/notification.png">
+                <img class="cartimg" src="images/cart.png">
+            </div>
+
+            <div class="userprofile">
+                <div class="profname" id="dropdown-toggle">
+                    <img class="userimg" src="images/user.png">
+                    <p id="username">Loading...</p>
+                    <img class="arrowimg" src="images/arrow.png">
+                </div>
+
+                <div class="dropdown" id="dropdown-content">
+                    <a href="#">View profile</a>
+                    <a href="#">My projects</a>
+                    <a href="#">Support</a>
+                    <a href="#">Logout</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="main-body">
+        <div class="profile-section">
+            <div id="user-profile"></div>
+        </div>
+
+        <!--The code is here -->
+        <div class="project_posts">
+            <div id="project_posts">
+            </div>
+        </div>
+        <!--The code is here -->
+
+
+    </div>
+</body>
+
+</html>

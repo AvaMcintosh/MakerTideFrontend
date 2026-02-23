@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/post_a_project.css" />
+		<script src="string_injection_block.js"></script>
+		<title>Post a project</title>
+	</head>
+
+	<% if (user !=null) { %>
+    	<%- include("partials/userheader") %>
+	<% } else { %>
+		<%- include("partials/header") %>
+	<% } %>
+	<body>
+		
+
+		<h1>Categories</h1>
+
+		<div class="category-grid">
+			<a href="/post/3Dprinting" class="category-card">3D Printing</a>
+			<a href="/post/poster" class="category-card">Poster</a>
+			<a href="/post/art" class="category-card">Art</a>
+			<a href="/post/wood" class="category-card">Wood</a>
+            <a href="/post/stationary" class="category-card">Stationary</a>
+		</div>
+	</body>
+</html>

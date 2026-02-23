@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/css/project_page.css" />
+	<title>Homepage</title>
+</head>
+
+<% if (user !=null) { %>
+    <%- include("partials/userheader") %>
+<% } else { %>
+	<%- include("partials/header") %>
+<% } %>
+
+<body>
+	<!-- Include header here -->
+
+	<div class="projects-body" id="projectsContainer"></div>
+
+	<div class="projects-search-box">
+		<h3>Filter Projects</h3>
+
+		<input type="text" placeholder="Search projects..." class="search-input" />
+
+		<div class="category-filters">
+			<label> <input type="checkbox" /> 3D Printing </label>
+			<label> <input type="checkbox" /> Fabric / Embroidery </label>
+			<label> <input type="checkbox" /> Posters </label>
+			<label> <input type="checkbox" /> Metal </label>
+			<label> <input type="checkbox" /> Wood </label>
+			<label> <input type="checkbox" /> Art </label>
+			<label> <input type="checkbox" /> Stationary </label>
+			<label> <input type="checkbox" /> Other </label>
+
+		</div>
+	</div>
+
+</body>
+
+</html>
+
+<script>
+
+	//Loads project data
+	//Doesn't seem to update automatically
+	async function loadProjects() {
+		const response = await fetch('/projectsData');
+		const projects = await response.json();
+
+		const container = document.getElementById('projectsContainer');
+
+		projects.forEach(project => {
+			const card = document.createElement('div');
+			card.classList.add('project-card');
+
+			card.innerHTML = `
+            <img src="${project.image}" class="project-image" />
+            <div class="project-content">
+                <h4>${project.title}</h4>
+                
+                <p><strong>Category:</strong> ${project.category}</p>
+                <p><strong>Location:</strong> ${project.location}</p>
+                
+                <p><strong>Deadline:</strong> ${project.deadline}</p>
+                <p><strong>Quantity:</strong> ${project.quantity}</p>
+                
+            </div>
+            <button class="bid-button">Make Bid</button>
+        `;
+
+			//When project card is clicked take user to project details page
+			card.addEventListener('click', () => {
+				window.location.href = `/projects/${project.id}`;
+			});
+
+			container.appendChild(card);
+		});
+	}
+
+	loadProjects();
+
+
+
+
+	document.addEventListener("click", function (event) {
+		var dropdown = document.querySelector(".dropdown");
+		var profname = document.querySelector(".profname");
+
+		if (!dropdown.contains(event.target) && !profname.contains(event.target)) {
+			dropdown.classList.remove("show");
+		}
+	});
+
+	document
+		.querySelector(".profname")
+		.addEventListener("click", function (event) {
+			var dropdown = document.querySelector(".dropdown");
+			dropdown.classList.toggle("show");
+			event.stopPropagation();
+		});
+
+	window.addEventListener("DOMContentLoaded", function () {
+		const firstImage = document.querySelector(".carousel img:first-child");
+		const carousel = document.querySelector(".carousel");
+		carousel.style.width = firstImage.clientWidth + "px";
+	});
+
+</script>

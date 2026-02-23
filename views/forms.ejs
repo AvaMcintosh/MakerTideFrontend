@@ -1,0 +1,92 @@
+
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/css/forms.css" />
+	<title>Homepage</title>
+</head>
+    
+        
+        <% if (user !=null) { %>
+            <%- include("partials/userheader") %>
+        <% } else { %>
+            <%- include("partials/header") %>
+                <% } %>
+
+
+<body>
+<h1>Post a <%= category %> Project</h1>
+
+<!-- If user isn't logged in, asks them to log in -->
+
+<!-- Then it takes user to the category forms page -->
+
+<!-- Asks the user for the project details -->
+<!-- Is this an item from online or a custom model you have? -->
+<!-- Yes, then add url option -->
+<!-- Title, description -->
+<!-- Photo needed -->
+
+<!-- Budget (Optional) -->
+<!-- Quantity (dropdown 1-5, 5+) -->
+<!-- Date Needed -->
+<!-- Size (Not sure how to do this) -->
+
+
+
+<!-- Calls the post /projects function in test.js -->
+<form method="POST" action="/projects">	
+	<input type="hidden" name="category" value="<%= category %>" />
+
+	<label>Title</label>
+	<input type="text" name="title" />
+
+	<label>Description</label>
+	<input type="text" name="description" />
+
+	<label>Image</label>
+	<input type="image" name="image" />
+
+	<label>Copyright</label>
+	<input type="checkbox" name="copyright" />
+
+	<label>Location</label>
+	<input type="text" name="location" />
+
+	<label>Budget</label>
+	<input type="number" name="budget" />
+
+	<label>Deadline</label>
+	<input type="date" name="deadline" />
+
+	<label>Quantity</label>
+	<input type="number" name="quantity" />
+
+	<label>Size</label>
+	<input type="text" name="size" />
+
+	<!--Missing multiple images, url option, fields aren't exact just text -->
+
+	<button type="submit">Submit</button>
+</form>
+
+<!-- Once user fills out details it goes to pickup/devilery page
+<form method="POST" action="/pickup_delivery">
+	<label>Pickup and Delivery</label>
+
+	<label>Earliest Pickup Date</label>
+	<input type="date" name="earliestpickup" />
+
+	<label>Latest Pickup Date</label>
+	<input type="date" name="latestpickup" />
+
+	Area where the user wants to pickup the project
+	<label>Pickup Location</label>
+	<input type="text" name="pickuplocation" />
+
+
+	<button type="submit">Submit</button>
+</form> -->
+
+</body>
