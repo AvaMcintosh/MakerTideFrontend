@@ -12,10 +12,16 @@ TODO:
 
 - Project Details Page needs design update
 
-- Project Details Page needs bid button
-
-- Projects Page needs bid button implementation
 
 - Add a check if the user doesn't exist when they post a project
 
 - Bid button design change
+
+
+DONE: 
+
+- Project Details Page needs bid button
+
+- Projects Page needs bid button implementation
+
+
