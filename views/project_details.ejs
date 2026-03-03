@@ -8,30 +8,39 @@
 	</head>
 
 	<% if (user !=null) { %>
-    	<%- include("partials/userheader") %>
+    <%- include("partials/userheader") %>
 	<% } else { %>
 		<%- include("partials/header") %>
 	<% } %>
 
 	<body>
-		<h1 id="title"></h1>
-		<p id="description"></p>
-		<p id="budget"></p>
+		<h1><%= project.title %></h1>
+		<p><%= project.description %></p>
+		<p>Budget: $<%= project.budget %></p>
+		<p>Quantity: $<%= project.quantity %></p>
+
+		<button class="bid-button">Make Bid</button>
+
+		<form class="bidForm" method="POST" action="/submitBid" style="display: none;">
+			<input type="hidden" name="projectId" value="<%= project.id %>" />
+			<input type="number" name="bidAmount" placeholder="Enter bid amount" required />
+			<input type="text" name="message" placeholder="Enter message" required />
+			<button type="submit">Submit Bid</button>
+		</form>
+
+		
 
 		<script>
-			// Get project ID from the URL path, e.g. /projects/5
-			const pathParts = window.location.pathname.split("/");
-			const projectId = pathParts[pathParts.length - 1];
-			console.log("Project ID from URL:", projectId); // Should log 5
+			const bidButton = document.querySelector(".bid-button");
+			const bidForm = document.querySelector(".bidForm");
 
-			fetch(`/projectsData/${projectId}`)
-				.then((res) => res.json())
-				.then((project) => {
-					document.getElementById("title").textContent = project.title;
-					document.getElementById("description").textContent =
-						project.description;
-				})
-				.catch((err) => console.error("Error fetching project:", err));
+			bidButton.addEventListener("click", function (event) {
+				
+				bidForm.style.display = "block";
+			});
+
 		</script>
+
+			
 	</body>
 </html>

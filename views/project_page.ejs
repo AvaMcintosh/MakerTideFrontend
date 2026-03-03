@@ -52,31 +52,50 @@
 		const container = document.getElementById('projectsContainer');
 
 		projects.forEach(project => {
-			const card = document.createElement('div');
-			card.classList.add('project-card');
+    const card = document.createElement('div');
+    card.classList.add('project-card');
 
-			card.innerHTML = `
-            <img src="${project.image}" class="project-image" />
-            <div class="project-content">
-                <h4>${project.title}</h4>
-                
-                <p><strong>Category:</strong> ${project.category}</p>
-                <p><strong>Location:</strong> ${project.location}</p>
-                
-                <p><strong>Deadline:</strong> ${project.deadline}</p>
-                <p><strong>Quantity:</strong> ${project.quantity}</p>
-                
-            </div>
-            <button class="bid-button">Make Bid</button>
-        `;
+    card.innerHTML = `
+        <img src="${project.image}" class="project-image" />
+        <div class="project-content">
+            <h4>${project.title}</h4>
+            <p><strong>Category:</strong> ${project.category}</p>
+            <p><strong>Location:</strong> ${project.location}</p>
+            <p><strong>Deadline:</strong> ${project.deadline}</p>
+            <p><strong>Quantity:</strong> ${project.quantity}</p>
+        </div>
 
-			//When project card is clicked take user to project details page
-			card.addEventListener('click', () => {
-				window.location.href = `/projects/${project.id}`;
-			});
+        <button class="bid-button">Make Bid</button>
 
-			container.appendChild(card);
-		});
+        <form class="bidForm" action="/submitBid" method="POST" style="display: none;">
+			<input type="hidden" name="projectId" value="${project.id}" />
+            <input type="number" name="bidAmount" placeholder="Enter bid amount" required />
+			<input type="text" name="message" placeholder="Enter message" required />
+            <button type="submit">Submit Bid</button>
+        </form>
+    `;
+
+    // Card click → go to details
+    card.addEventListener('click', () => {
+        window.location.href = `/projects/${project.id}`;
+    });
+
+    // Get the button and form inside THIS card
+    const bidButton = card.querySelector(".bid-button");
+    const bidForm = card.querySelector(".bidForm");
+
+    bidButton.addEventListener("click", function (event) {
+        event.stopPropagation(); // prevents redirect
+        bidForm.style.display = "block";
+    });
+
+    // Also stop form clicks from redirecting
+    bidForm.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
+
+    container.appendChild(card);
+});
 	}
 
 	loadProjects();
@@ -106,5 +125,13 @@
 		const carousel = document.querySelector(".carousel");
 		carousel.style.width = firstImage.clientWidth + "px";
 	});
+
+	// Show bid form when "Make Bid" button is clicked
+	const bidButton = document.getElementById("bidButton");
+    const bidForm = document.getElementById("bidForm");
+
+    bidButton.addEventListener("click", function () {
+        bidForm.style.display = "block";
+    });
 
 </script>

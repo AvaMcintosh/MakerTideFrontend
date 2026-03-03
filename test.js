@@ -29,6 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 
+const bids = []; // Example bid storage, replace with database in production
 // Example Project Templates
 const projects = [
     {
@@ -121,27 +122,18 @@ app.get("/post", async (req, res) => {
 
 //calls project details page 
 app.get("/projects/:id", (req, res) => {
-    res.render("project_details", {
-        user: req.session.user
-    });
-});
-
-//This gets the correct project data for the project details page 
-app.get("/projectsData/:id", (req, res) => {
     const projectId = parseInt(req.params.id);
-
-    console.log("Requested project ID:", projectId);
-
     const project = projects.find(p => p.id === projectId);
 
     if (!project) {
-        return res.status(404).json({ error: "Project not found" });
+        return res.status(404).send("Project not found");
     }
 
-    res.json(project);
+    res.render("project_details", {
+        user: req.session.user,
+        project: project
+    });
 });
-
-
 
 
 //renders the form based on the category the user picked
@@ -167,6 +159,23 @@ app.post("/projects", (req, res) => {
     };
     console.log("New project data:", newProject); // Log the new project data
     //Here is where you will add the project to the database
+});
+
+//When a user submits a bid on a project this creates the bid project
+app.post('/submitBid', (req, res) => {
+    const {projectId, bidAmount, message, owner} = req.body;
+    const newBid = {
+        bidId: bids.length + 1, // Unique ID for the bid, you can use a better method in production
+        projectId,
+        bidAmount, 
+        message,
+        owner: req.session.user ? req.session.user.username : "Anonymous" // Assuming user object has a username
+    };
+    console.log("New Bid Data: ", newBid); // Log the incoming bid data
+    
+    
+    //save bid to database
+    res.redirect(`/projects`); // Redirect back to the project details page after submitting the bid
 });
 
 app.listen(PORT, () => {
