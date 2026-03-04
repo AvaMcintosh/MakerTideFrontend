@@ -29,6 +29,9 @@ app.use((req, res, next) => {
     next();
 });
 
+const users = [{ email: "ava@example.com", password: "1234", name: "Ava" },
+{ email: "bob@example.com", password: "abcd", name: "Bob" }];
+
 const bids = []; // Example bid storage, replace with database in production
 // Example Project Templates
 const projects = [
@@ -82,16 +85,18 @@ const projects = [
     }
 ];
 
-//Calls homepage
+//Renders homepage
 app.get("/", (req, res) => {
     res.render("index");
 });
 
+//renders login page
+app.get("/login", (req, res) => {
+    res.render("login");
+});
 
 
-
-//When we add database this should call data from database
-//Grabs the project data and adds them to the project cards 
+//Will be able to remove this in the future and move it into /projects function
 app.get('/projectsData', (req, res) => {
     res.json(projects);
 });
@@ -101,10 +106,10 @@ app.get("/projects", async (req, res) => {
     //This is where we want to get the project objects from the database,
     // but for now we will just use the example projects array (The function above is what is populating object data))
     //const projects = await getProjectsFromDatabase(); 
-    
+
 
     res.render("project_page", {
-        
+
         user: req.session.user
     });
 });
@@ -114,7 +119,7 @@ app.get("/projects", async (req, res) => {
 app.get("/post", async (req, res) => {
 
     res.render("post_a_project", {
-        
+
         user: req.session.user
     });
 });
@@ -163,20 +168,44 @@ app.post("/projects", (req, res) => {
 
 //When a user submits a bid on a project this creates the bid project
 app.post('/submitBid', (req, res) => {
-    const {projectId, bidAmount, message, owner} = req.body;
+    const { projectId, bidAmount, message, owner } = req.body;
     const newBid = {
         bidId: bids.length + 1, // Unique ID for the bid, you can use a better method in production
         projectId,
-        bidAmount, 
+        bidAmount,
         message,
         owner: req.session.user ? req.session.user.username : "Anonymous" // Assuming user object has a username
     };
     console.log("New Bid Data: ", newBid); // Log the incoming bid data
-    
-    
+
     //save bid to database
     res.redirect(`/projects`); // Redirect back to the project details page after submitting the bid
 });
+
+//When a user logins in this checks if they exist
+app.post("/login", async (req, res) => {
+    const { mail, pass } = req.body;
+
+    //grabs from array rn
+    const user = users.find(u => u.email === mail);
+
+    // database example
+    // const user = await User.findOne({ email: mail });
+
+    if (!user) {
+        return res.render("login", { error: "User not found" });
+    }
+
+    if (user.password !== pass) {
+        return res.render("login", { error: "Invalid password" });
+    }
+
+    // Set session
+    req.session.user = user;
+
+    res.redirect("/projects"); // takes user to projects page
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);

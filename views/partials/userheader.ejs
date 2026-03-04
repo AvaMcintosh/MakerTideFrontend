@@ -2,7 +2,7 @@
 		<link rel="stylesheet" href="css/header2.css">
         <div class="main-nav">
 			<div class="navbar">
-				<a class="title" href="homepage.html">Maker Tide</a>
+				<a class="title" href="/">Maker Tide</a>
 				<div class="searchbar">
 					<img class="searchimg" src="images/search.png" />
 					<input
@@ -13,7 +13,7 @@
 					/>
 				</div>
 				<a class="post" href="/post">Post a project</a>
-				<a class="shop" href="#">Shop</a>
+				<a class="shop" href="/projects">Projects</a>
 				<div class="icons">
 					<img class="messageimg" src="images/message.png" />
 					<img class="notificationimg" src="images/notification.png" />
@@ -22,7 +22,7 @@
 				<div class="userprofile">
 					<div class="profname">
 						<img class="userimg" src="images/user.png" />
-						<p>Username</p>
+						<p><%= user.name %></p>
 						<img class="arrowimg" src="images/arrow.png" />
 					</div>
 					<div class="dropdown">
