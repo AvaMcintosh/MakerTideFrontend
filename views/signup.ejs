@@ -11,12 +11,12 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="index.html">Maker Tide</a>
+        <a href="/">Maker Tide</a>
     </div>
     <div class="big_container">
         <div class="container" id="container">
             <div class="form-container login">
-                <form method="post">
+                <form method="POST" action="/createUser">
                     <p class="head">SIGN-UP</p>
                     <div class="contents">
                         <div class="name">
@@ -27,7 +27,8 @@
                     <div class="password">
                         <input type="password" name="pass" id="pass" placeholder="Create Password" required>
                     </div>
-                    <a href="#" class="sign_btn">Signup</a>
+                    <button type="submit" class="sign_btn">Signup</button>
+                    <!-- <a href="#" class="sign_btn">Signup</a> -->
                     <a href="#">
                         <div class="ggl">
                             <img class="ggl_img" src="images/ggl.png">
@@ -37,12 +38,11 @@
                     
                     <div class="signup_redirect">
                         <span>Already have an account? </span>
-                        <a href="login.html">Login</a>
+                        <a href="/login">Login</a>
                     </div>
                     </div>
                 </form>
             </div>
-            
         </div>
     </div>
 </body>

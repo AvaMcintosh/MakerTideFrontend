@@ -29,8 +29,8 @@ app.use((req, res, next) => {
     next();
 });
 
-const users = [{ email: "ava@example.com", password: "1234", name: "Ava" },
-{ email: "bob@example.com", password: "abcd", name: "Bob" }];
+const users = [{ email: "ava@example.com", password: "1234", fname: "Ava", lname: "Smith"},
+{ email: "bob@example.com", password: "abcd", fname: "Bob", lname: "Name" }];
 
 const bids = []; // Example bid storage, replace with database in production
 // Example Project Templates
@@ -88,6 +88,11 @@ const projects = [
 //Renders homepage
 app.get("/", (req, res) => {
     res.render("index");
+});
+
+//renders signup page
+app.get("/signup", (req, res) => {
+    res.render("signup");
 });
 
 //renders login page
@@ -205,6 +210,39 @@ app.post("/login", async (req, res) => {
 
     res.redirect("/projects"); // takes user to projects page
 });
+
+//When a user signs up creates new user
+app.post("/createUser", (req, res) => {
+    const { fname, lname, mail, pass } = req.body;
+
+    // Check if email already exists
+    const existingUser = users.find(user => user.email === mail);
+
+    if (existingUser) {
+        return res.render("signup", {
+            error: "Email already exists"
+        });
+    }
+
+    // Create new user object
+    const newUser = {
+        id: users.length + 1,
+        firstName: fname,
+        lastName: lname,
+        email: mail,
+        password: pass   
+    };
+
+    // Add to array
+    users.push(newUser);
+
+    // Set session
+    req.session.user = newUser;
+
+    // Redirect to homepage
+    res.redirect("/projects");
+});
+
 
 
 app.listen(PORT, () => {
