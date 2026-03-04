@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 
-const users = [{ email: "ava@example.com", password: "1234", fname: "Ava", lname: "Smith"},
+const users = [{ email: "ava@example.com", password: "1234", fname: "Ava", lname: "Smith" },
 { email: "bob@example.com", password: "abcd", fname: "Bob", lname: "Name" }];
 
 const bids = []; // Example bid storage, replace with database in production
@@ -102,20 +102,30 @@ app.get("/login", (req, res) => {
 
 
 //Will be able to remove this in the future and move it into /projects function
-app.get('/projectsData', (req, res) => {
-    res.json(projects);
-});
+// app.get('/projectsData', (req, res) => {
+//     res.json(projects);
+// });
 
 //Calls project page 
-app.get("/projects", async (req, res) => {
-    //This is where we want to get the project objects from the database,
-    // but for now we will just use the example projects array (The function above is what is populating object data))
-    //const projects = await getProjectsFromDatabase(); 
+app.get("/projects", (req, res) => {
+    const selectedCategories = req.query.category;
 
+    let filteredProjects = projects;
+
+    if (selectedCategories) {
+        const categoriesArray = Array.isArray(selectedCategories)
+            ? selectedCategories
+            : [selectedCategories];
+
+        filteredProjects = projects.filter(project =>
+            categoriesArray.includes(project.category)
+        );
+    }
 
     res.render("project_page", {
-
-        user: req.session.user
+        user: req.session.user,
+        projects: filteredProjects,
+        selectedCategories: selectedCategories || []
     });
 });
 
@@ -230,7 +240,7 @@ app.post("/createUser", (req, res) => {
         firstName: fname,
         lastName: lname,
         email: mail,
-        password: pass   
+        password: pass
     };
 
     // Add to array

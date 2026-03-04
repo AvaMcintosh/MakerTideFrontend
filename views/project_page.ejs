@@ -9,129 +9,125 @@
 </head>
 
 <% if (user !=null) { %>
-    <%- include("partials/userheader") %>
-<% } else { %>
-	<%- include("partials/header") %>
-<% } %>
+	<%- include("partials/userheader") %>
+		<% } else { %>
+			<%- include("partials/header") %>
+				<% } %>
 
-<body>
-	<!-- Include header here -->
+					<body>
 
-	<div class="projects-body" id="projectsContainer"></div>
+						<div class="projects-body">
 
-	<div class="projects-search-box">
-		<h3>Filter Projects</h3>
+							<% projects.forEach(project=> { %>
+								<div class="project-card" onclick="window.location.href='/projects/<%= project.id %>'">
 
-		<input type="text" placeholder="Search projects..." class="search-input" />
+									<img src="<%= project.image %>" class="project-image" />
 
-		<div class="category-filters">
-			<label> <input type="checkbox" /> 3D Printing </label>
-			<label> <input type="checkbox" /> Fabric / Embroidery </label>
-			<label> <input type="checkbox" /> Posters </label>
-			<label> <input type="checkbox" /> Metal </label>
-			<label> <input type="checkbox" /> Wood </label>
-			<label> <input type="checkbox" /> Art </label>
-			<label> <input type="checkbox" /> Stationary </label>
-			<label> <input type="checkbox" /> Other </label>
+									<div class="project-content">
+										<h4>
+											<%= project.title %>
+										</h4>
+										<p><strong>Category:</strong>
+											<%= project.category %>
+										</p>
+										<p><strong>Location:</strong>
+											<%= project.location %>
+										</p>
+										<p><strong>Deadline:</strong>
+											<%= project.deadline %>
+										</p>
+										<p><strong>Quantity:</strong>
+											<%= project.quantity %>
+										</p>
+									</div>
 
-		</div>
-	</div>
+									<button
+										onclick="event.stopPropagation(); this.nextElementSibling.style.display='block';">
+										Make Bid
+									</button>
 
-</body>
+									<form action="/submitBid" method="POST" style="display:none;"
+										onclick="event.stopPropagation();">
+										<input type="hidden" name="projectId" value="<%= project.id %>" />
+										<input type="number" name="bidAmount" placeholder="Enter bid amount" required />
+										<input type="text" name="message" placeholder="Enter message" required />
+										<button type="submit">Submit Bid</button>
+									</form>
+
+								</div>
+								<% }) %>
+
+						</div>
+
+
+
+						<div class="projects-search-box">
+							<h3>Filter Projects</h3>
+
+							<input type="text" placeholder="Search projects..." class="search-input" />
+
+							<form method="GET" action="/projects">
+								<div class="category-filters">
+
+									<label>
+										<input type="checkbox" name="category" value="3D Printing" />
+										3D Printing
+									</label>
+
+									<label>
+										<input type="checkbox" name="category" value="Fabric / Embroidery" />
+										Fabric / Embroidery
+									</label>
+
+									<label>
+										<input type="checkbox" name="category" value="Posters" />
+										Posters
+									</label>
+
+									<label>
+										<input type="checkbox" name="category" value="Metal" />
+										Metal
+									</label>
+
+									<label>
+										<input type="checkbox" name="category" value="Wood" />
+										Wood
+									</label>
+
+									<label>
+										<input type="checkbox" name="category" value="Art" />
+										Art
+									</label>
+
+									<label>
+										<input type="checkbox" name="category" value="Stationary" />
+										Stationary
+									</label>
+
+									<label>
+										<input type="checkbox" name="category" value="Other" />
+										Other
+									</label>
+
+								</div>
+
+								<button type="submit">Filter</button>
+							</form>
+						</div>
+
+
+
+					</body>
 
 </html>
 
-<script>
-
-	//Loads project data
-	//Doesn't seem to update automatically
-	async function loadProjects() {
-		const response = await fetch('/projectsData');
-		const projects = await response.json();
-
-		const container = document.getElementById('projectsContainer');
-
-		projects.forEach(project => {
-    const card = document.createElement('div');
-    card.classList.add('project-card');
-
-    card.innerHTML = `
-        <img src="${project.image}" class="project-image" />
-        <div class="project-content">
-            <h4>${project.title}</h4>
-            <p><strong>Category:</strong> ${project.category}</p>
-            <p><strong>Location:</strong> ${project.location}</p>
-            <p><strong>Deadline:</strong> ${project.deadline}</p>
-            <p><strong>Quantity:</strong> ${project.quantity}</p>
-        </div>
-
-        <button class="bid-button">Make Bid</button>
-
-        <form class="bidForm" action="/submitBid" method="POST" style="display: none;">
-			<input type="hidden" name="projectId" value="${project.id}" />
-            <input type="number" name="bidAmount" placeholder="Enter bid amount" required />
-			<input type="text" name="message" placeholder="Enter message" required />
-            <button type="submit">Submit Bid</button>
-        </form>
-    `;
-
-    // Card click → go to details
-    card.addEventListener('click', () => {
-        window.location.href = `/projects/${project.id}`;
-    });
-
-    // Get the button and form inside THIS card
-    const bidButton = card.querySelector(".bid-button");
-    const bidForm = card.querySelector(".bidForm");
-
-    bidButton.addEventListener("click", function (event) {
-        event.stopPropagation(); // prevents redirect
-        bidForm.style.display = "block";
-    });
-
-    // Also stop form clicks from redirecting
-    bidForm.addEventListener("click", function (event) {
-        event.stopPropagation();
-    });
-
-    container.appendChild(card);
-});
-	}
-
-	loadProjects();
-
-
-
-
-	document.addEventListener("click", function (event) {
-		var dropdown = document.querySelector(".dropdown");
-		var profname = document.querySelector(".profname");
-
-		if (!dropdown.contains(event.target) && !profname.contains(event.target)) {
-			dropdown.classList.remove("show");
-		}
-	});
-
-	document
-		.querySelector(".profname")
-		.addEventListener("click", function (event) {
-			var dropdown = document.querySelector(".dropdown");
-			dropdown.classList.toggle("show");
-			event.stopPropagation();
-		});
-
-	window.addEventListener("DOMContentLoaded", function () {
-		const firstImage = document.querySelector(".carousel img:first-child");
-		const carousel = document.querySelector(".carousel");
-		carousel.style.width = firstImage.clientWidth + "px";
-	});
-
-	// Show bid form when "Make Bid" button is clicked
-	const bidButton = document.getElementById("bidButton");
-    const bidForm = document.getElementById("bidForm");
-
-    bidButton.addEventListener("click", function () {
-        bidForm.style.display = "block";
-    });
-
-</script>
+<% projects.forEach(project=> { %>
+	<div class="project-card">
+		<h3>
+			<%= project.title %>
+		</h3>
+		<p>
+			<%= project.category %>
+		</p>
+	</div>
+	<% }) %>
