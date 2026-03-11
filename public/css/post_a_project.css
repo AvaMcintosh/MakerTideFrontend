@@ -1,162 +1,162 @@
 /* Header Css, Want to move this into a general header css file */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 10px;
-    font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
-    background-color: #E3EFEF;
+  background-color: #e3efef;
 }
 
 .main-nav {
-    display: flex;
-    height: 6vh;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    box-shadow: 0px 9px 35px 0px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000
+  display: flex;
+  height: 6vh;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 9px 35px 0px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar {
-    width: 80vw;
-    display: flex;
-    align-items: center;
-    height: 6vh;
-    justify-content: space-between;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  height: 6vh;
+  justify-content: space-between;
 }
 
 a.title {
-    text-decoration: none;
-    font-size: 22px;
-    font-weight: bolder;
-    color: #28AFB0;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bolder;
+  color: #28afb0;
 }
 
 a.shop,
 a.post {
-    font-size: 12px;
-    font-weight: bolder;
-    color: #28AFB0;
-    text-decoration: none;
+  font-size: 12px;
+  font-weight: bolder;
+  color: #28afb0;
+  text-decoration: none;
 }
 
 .searchbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
 }
 
 img.searchimg {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    left: 3px;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 3px;
 }
 
 input[type="search"] {
-    width: 400px;
-    height: 30px;
-    outline: none;
-    padding-left: 18px;
+  width: 400px;
+  height: 30px;
+  outline: none;
+  padding-left: 18px;
 }
 
 input::placeholder {
-    font-size: 10px;
-    color: B4B4B4;
-    letter-spacing: 1px;
+  font-size: 10px;
+  color: B4B4B4;
+  letter-spacing: 1px;
 }
 
 .messageimg,
 .notificationimg,
 .cartimg {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .icons {
-    display: flex;
-    flex-direction: row;
-    width: 90px;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 90px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .userprofile {
-    position: relative;
+  position: relative;
 }
 
 img.userimg {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
 }
 
 img.arrowimg {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 .profname {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .profname p {
-    font-size: 12px;
-    letter-spacing: 1px;
-    font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .dropdown {
-    position: absolute;
-    top: 4vh;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: #E3EFEF;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 4vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #e3efef;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdown a {
-    height: 30px;
-    font-size: 12px;
-    width: 100%;
-    text-decoration: none;
-    color: black;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    padding-top: 6px;
+  height: 30px;
+  font-size: 12px;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 6px;
 }
 
 .dropdown a:hover {
-    background-color: #28AFB0;
-    color: white;
+  background-color: #28afb0;
+  color: white;
 }
 
 .dropdown {
-    display: none;
+  display: none;
 }
 
 .dropdown.show {
-    display: block;
+  display: block;
 }
 
 /* Header Css, Want to move this into a general header css file */
@@ -164,28 +164,59 @@ img.arrowimg {
 /*Main Page Css*/
 
 .category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+  padding: 40px;
+  margin-top: 6vh;
+  min-height: calc(100vh - 6vh);
+  align-items: start;
+  justify-items: center;
 }
 
 .category-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: black;
-    transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+  transition: 0.2s ease;
+  padding: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.category-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.card-content h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card-content p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.4;
 }
 
 .category-card:hover {
-    background-color: #0077ff;
-    color: white;
-    transform: scale(1.03);
+  background-color: #0077ff;
+  color: white;
+  transform: scale(1.05);
+}
+
+.category-card:hover .card-content h3,
+.category-card:hover .card-content p {
+  color: white;
 }
